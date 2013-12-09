@@ -1,15 +1,13 @@
 <?php
 
 /**
- * A plugin for Omeka that adds Google Analytics code to your page.
+ * This plugin allows the implementation of the Google Tag Manager code to your Omeka install
  *
- * You will have to make sure you add the following code to the footer.php file
- * of your theme
+ * Please make sure to include the required hook <?php fire_plugin_hook('public_body', array('view' => $this)); ?>
+ * right after the <body> tag in your theme.
  *
- * 		<?php fire_plugin_hook('public_footer', array('view' => $this)); ?>
- *
- * @package   Google Analytics
- * @author    Dave Widmer <dwidmer@bgsu.edu>
+ * @package   Google TagManager
+ * @author    Anurag Spatzenegger
  */
 class GoogleTagmanagerPlugin extends Omeka_Plugin_AbstractPlugin
 {
@@ -60,7 +58,7 @@ class GoogleTagmanagerPlugin extends Omeka_Plugin_AbstractPlugin
 	}
 
 	/**
-	 * The hook that adds the google tagmanager code to your website, as long as
+	 * Add the google tagmanager code to your website, as long as
 	 * the tracking code is set.
 	 *
 	 * @param  array $args  Plugin hook arguments (in this case the view)
@@ -69,7 +67,7 @@ class GoogleTagmanagerPlugin extends Omeka_Plugin_AbstractPlugin
 	{
 		$tagManagerContainerId = get_option('tagManagerContainerId');
 
-		if ( ! empty($tagManagerContainerId))
+		if (! empty($tagManagerContainerId))
 		{
 			ob_start();
 			include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'google_tagmanager_code.php';
