@@ -1,20 +1,24 @@
 <?php
-
 /**
- * This plugin allows the implementation of the Google Tag Manager code to your Omeka install
- *
- * Please make sure to include the required hook <?php fire_plugin_hook('public_body', array('view' => $this)); ?>
- * right after the <body> tag in your theme.
- *
- * @package   Google TagManager
- * @author    Anurag Spatzenegger
+ *  Google Tag Manager Plugin
+ *  @copyright Copyright 2013 The Digital Ark, Corp.
+ *  @license http://www.gnu.org/licenses/gpl-3.0.txt GPLv3 or any later version
+ *  @package GoogleTag Manager
  */
+
+define('GOOGLETAGMANAGER_PLUGIN_DIR', PLUGIN_DIR . '/GoogleTagmanager');
 class GoogleTagmanagerPlugin extends Omeka_Plugin_AbstractPlugin
 {
 	/**
 	 * @var array  Plugin hooks
 	 */
-	protected $_hooks = array('install','uninstall','config','config_form', 'public_body');
+	protected $_hooks = array(
+        'install',
+        'uninstall',
+        'config',
+        'config_form',
+        'public_body'
+    );
 
 	/**
 	 * @var array  Plugin options
@@ -54,7 +58,7 @@ class GoogleTagmanagerPlugin extends Omeka_Plugin_AbstractPlugin
 	public function hookConfigForm()
 	{
         $tagManagerContainerId = get_option('tagManagerContainerId');
-		require dirname(__FILE__) . DIRECTORY_SEPARATOR . 'config_form.php';
+		require GOOGLETAGMANAGER_PLUGIN_DIR . '/config_form.php';
 	}
 
 	/**
@@ -67,10 +71,10 @@ class GoogleTagmanagerPlugin extends Omeka_Plugin_AbstractPlugin
 	{
 		$tagManagerContainerId = get_option('tagManagerContainerId');
 
-		if (! empty($tagManagerContainerId))
+		if (!empty($tagManagerContainerId))
 		{
 			ob_start();
-			include dirname(__FILE__) . DIRECTORY_SEPARATOR . 'google_tagmanager_code.php';
+			include GOOGLETAGMANAGER_PLUGIN_DIR . '/views/public/google_tagmanager_code.php';
 			echo ob_get_clean();
 		}
 	}

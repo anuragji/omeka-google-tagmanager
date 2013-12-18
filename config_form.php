@@ -1,3 +1,11 @@
+<?php
+/**
+ *  Google Tag Manager Plugin
+ *  @copyright Copyright 2013 The Digital Ark, Corp.
+ *  @license http://www.gnu.org/licenses/gpl-3.0.txt GPLv3 or any later version
+ *  @package GoogleTag Manager
+ */
+?>
 <?php $view = get_view(); ?>
 <div id="google-tag-manager-settings">
     <h2><?php echo __('Google Tag Manager Settings');?></h2>
@@ -18,7 +26,8 @@
     </ul>
     <p class="explanation"><b>Please note</b>: In order for the tag to be included in your template files, you will need to ensure that following hook
         <br /><code style="font-size: 90%">&lt;?php fire_plugin_hook('public_body', array('view' => $this)); ?&gt;</code>
-        <br />is inserted right after the <code style="font-size: 90%">&lt;body&gt</code> tag of your theme (e.g. in <i>yourtheme/common/header.php</i>).</p>
+        <br />is inserted right after the <code style="font-size: 90%">&lt;body&gt</code> tag of your theme (e.g. in <i>yourtheme/common/header.php</i>).
+    </p>
 </div>
 
 
